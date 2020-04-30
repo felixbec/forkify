@@ -3,6 +3,7 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 
 import Search from './Model/Search';
+import Recipe from './Model/Recipe';
 import * as searchView from './View/searchView';
 import { elements, renderLoader, clearLoader } from './View/base';
 
@@ -14,6 +15,7 @@ import { elements, renderLoader, clearLoader } from './View/base';
 */
 const state = {};
 
+/** SEARCH CONTROLLER **/
 const controlSearch = async () => {
     //TODOS
     //1. Get Query from View
@@ -51,3 +53,4 @@ elements.searchResPages.addEventListener('click', e => {
     }
 });
 
+/** RECIPE CONTROLLER **/
