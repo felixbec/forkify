@@ -4,7 +4,7 @@ import "regenerator-runtime/runtime";
 
 import Search from './Model/Search';
 import * as searchView from './View/searchView';
-import { elements } from './View/base';
+import { elements, renderLoader, clearLoader } from './View/base';
 
 /* Global State of the app
     - Search Object
@@ -26,11 +26,13 @@ const controlSearch = async () => {
         //3. Configure UI for results
         searchView.clearInput();
         searchView.clearResults();
+        renderLoader(elements.searchRes);
 
         //4. Search Recipes
         await state.search.getResults();
 
         //5. Render results on UI
+        clearLoader();
         searchView.renderResults(state.search.result);
     }
 };
@@ -40,4 +42,12 @@ elements.searchForm.addEventListener('submit', e => {
     controlSearch();
 });
 
+elements.searchResPages.addEventListener('click', e => {
+    const btn = e.target.closest('.btn-inline');
+    if (btn) {
+        const goToPage = parseInt(btn.dataset.goto, 10);
+        searchView.clearResults();
+        searchView.renderResults(state.search.result, goToPage);
+    }
+});
 
