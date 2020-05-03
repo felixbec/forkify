@@ -132,10 +132,6 @@ elements.shopping.addEventListener('click', e => {
 });
 
 /** LIKES CONTROLLER **/
-
-//Testing
-if (!state.likes) state.likes = new Likes();
-likesView.toggleLikeMenu(state.likes.getNumLikes());
 const controlLike = () => {
     if (!state.likes) state.likes = new Likes();
     const currentID = state.recipe.id;
@@ -165,6 +161,21 @@ const controlLike = () => {
     likesView.toggleLikeMenu(state.likes.getNumLikes());
 }
 
+//TODOS
+//1. Render Like Recipes for Local Storage on Page Load
+window.addEventListener('load', () => {
+    //2. Create Likes Object 
+    if (!state.likes) state.likes = new Likes();
+
+    //3. Restore Likes from Local Storage API
+    state.likes.readStorage();
+
+    //4. Toggle Like Menu Button
+    likesView.toggleLikeMenu(state.likes.getNumLikes());
+
+    //5. Render the current likes 
+    state.likes.likes.forEach(like => likesView.renderLike(like));
+});
 
 elements.recipe.addEventListener('click', e => {
     if (e.target.matches('.btn-decrease, .btn-decrease *')) {
