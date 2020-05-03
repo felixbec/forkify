@@ -4,6 +4,7 @@ import "regenerator-runtime/runtime";
 
 import Search from './Model/Search';
 import Recipe from './Model/Recipe';
+import List from './Model/List';
 import * as searchView from './View/searchView';
 import * as recipeView from './View/recipeView';
 import { elements, renderLoader, clearLoader } from './View/base';
@@ -115,3 +116,6 @@ elements.recipe.addEventListener('click', e => {
     }
 });
 
+/** LIST CONTROLLER **/
+const l = new List();
+window.l = l;
